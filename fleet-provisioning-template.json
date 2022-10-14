@@ -1,0 +1,49 @@
+{
+  "Parameters": {
+    "ThingName": {
+      "Type": "String"
+    },
+    "ThingGroupName": {
+      "Type": "String"
+    },
+    "AWS::IoT::Certificate::Id": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "PiBot": {
+      "OverrideSettings": {
+        "AttributePayload": "REPLACE",
+        "ThingGroups": "REPLACE",
+        "ThingTypeName": "REPLACE"
+      },
+      "Properties": {
+        "AttributePayload": {},
+        "ThingGroups": [
+          {
+            "Ref": "ThingGroupName"
+          }
+        ],
+        "ThingName": {
+          "Ref": "ThingName"
+        }
+      },
+      "Type": "AWS::IoT::Thing"
+    },
+    "GGv2Policy": {
+      "Properties": {
+        "PolicyName": "GreengrassV2IoTThingPolicy"
+      },
+      "Type": "AWS::IoT::Policy"
+    },
+    "MyCertificate": {
+      "Properties": {
+        "CertificateId": {
+          "Ref": "AWS::IoT::Certificate::Id"
+        },
+        "Status": "Active"
+      },
+      "Type": "AWS::IoT::Certificate"
+    }
+  }
+}
