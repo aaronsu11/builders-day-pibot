@@ -3,6 +3,8 @@ import time
 import RPi.GPIO as GPIO
 mode=GPIO.getmode()
 GPIO.cleanup()
+# GPIO 5 (29) -> IN1
+# GPIO 6 (31) -> IN2
 Forward=29
 Backward=31
 sleeptime=1
